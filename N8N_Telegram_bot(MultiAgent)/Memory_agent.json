@@ -1,0 +1,692 @@
+{
+  "name": "memory agent",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        640,
+        -100
+      ],
+      "id": "76845d9f-9241-4917-87a2-be1d7a89ae8b",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('When Executed by Another Workflow').item.json.query }}",
+        "options": {
+          "systemMessage": "=Role:\nYou are MemoryBase_Agent, Salman’s brain in AI form. Your job is to store, organize, and retrieve important details like contacts, teammates, company info, past conversations, and anything else Salman might need later.\n\nYou don’t just store data—you make sure it’s easy to find. When Salman asks for something, you retrieve it fast and give only the important details, keeping it simple and clear.\n\n📝 What You Store & Manage:\n✅ Notifications → Notifications, messages and everything that salman have in his life.\n✅ Company Info → Important business details like policies, pricing, projects, and past deals.\n✅ Past Conversations & Stories → Notes from past meetings, key decisions, and client interactions, our past convo will be stored in personal data\n✅ Important Docs & References → Store and fetch links, files, or summaries Salman might need later.\nAlso the team mates information and contacts\n\n \nI'll tell you where it will be:  (Always understand that we only have one knowledge base and the tables we have is \"Notifications\", \"Personal\", \"Contacts\")\nKnowledge base will have everything including those tables. \nWhen you want to get a data you should check these two tables and should give the data."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        860,
+        -100
+      ],
+      "id": "3c47bfb7-a936-474b-8864-994f420ccbd1",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        360
+      ],
+      "id": "6ac9f0f2-82ea-4678-b3cf-ae715c1d82c1",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "UhE57FbNZS6UBi1o",
+          "name": "Demo Acc"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "base",
+        "options": {
+          "permissionLevel": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Permission_Level', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        960,
+        140
+      ],
+      "id": "d09ab960-0114-40e9-90de-2fd0fd29d7dc",
+      "name": "get many records",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Table', ``, 'string') }}",
+          "mode": "id"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "personal data": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('personal_data', `data from the ai`, 'string') }}"
+          },
+          "matchingColumns": [
+            "personal data"
+          ],
+          "schema": [
+            {
+              "id": "personal data",
+              "displayName": "personal data",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        660,
+        320
+      ],
+      "id": "845ba1a3-0ae9-4191-8ef0-c31eed0872a5",
+      "name": "Create a record - personal",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbluLGQVqjaVMPskC",
+          "mode": "list",
+          "cachedResultName": "Personal",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tbluLGQVqjaVMPskC"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        860,
+        320
+      ],
+      "id": "d63f0926-ee80-4b3d-af68-4478d312a41f",
+      "name": "Search - personal",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbluLGQVqjaVMPskC",
+          "mode": "list",
+          "cachedResultName": "Personal",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tbluLGQVqjaVMPskC"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "personal data"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "personal data",
+              "displayName": "personal data",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        640,
+        140
+      ],
+      "id": "554fa764-7047-4613-bc4e-7b521d42d410",
+      "name": "Create or Update Existing - personal",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteRecord",
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbluLGQVqjaVMPskC",
+          "mode": "list",
+          "cachedResultName": "Personal",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tbluLGQVqjaVMPskC"
+        },
+        "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Record_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        1140,
+        140
+      ],
+      "id": "93115a53-d97e-4742-a1bd-07bc025e855e",
+      "name": "delete record - personal",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbluLGQVqjaVMPskC",
+          "mode": "list",
+          "cachedResultName": "Personal",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tbluLGQVqjaVMPskC"
+        },
+        "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Record_ID', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        800,
+        140
+      ],
+      "id": "9db18198-d456-4555-89d2-0aacb563fde7",
+      "name": "get record - personal",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tbluLGQVqjaVMPskC",
+          "mode": "list",
+          "cachedResultName": "Personal",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tbluLGQVqjaVMPskC"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "personal data",
+              "displayName": "personal data",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        1040,
+        320
+      ],
+      "id": "aee695db-64e6-40d2-a65d-eb28c960097d",
+      "name": "Update record - personal",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "Memory_key_BAse"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        340,
+        320
+      ],
+      "id": "dbbf642d-c338-4d55-9457-f15a960a7379",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblnifhM4rV6psSrN",
+          "mode": "list",
+          "cachedResultName": "Notifications",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tblnifhM4rV6psSrN"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        1220,
+        340
+      ],
+      "id": "d9238aec-f774-4bf7-a624-375f9b796d88",
+      "name": "Search notifications",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblnifhM4rV6psSrN",
+          "mode": "list",
+          "cachedResultName": "Notifications",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tblnifhM4rV6psSrN"
+        },
+        "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Record_ID', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        1320,
+        180
+      ],
+      "id": "9cbd213e-c117-484d-9728-4cc9e0b68e6e",
+      "name": "get record - notifications",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblnTD81v7IZ4rh5m",
+          "mode": "list",
+          "cachedResultName": "Contact details",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tblnTD81v7IZ4rh5m"
+        },
+        "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Record_ID', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        1420,
+        340
+      ],
+      "id": "82285f3c-b51c-417a-8981-1d4fb7cab4c7",
+      "name": "get record - contacts",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblnTD81v7IZ4rh5m",
+          "mode": "list",
+          "cachedResultName": "Contact details",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tblnTD81v7IZ4rh5m"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        1600,
+        340
+      ],
+      "id": "60e31fa4-1f3d-4f10-abad-70fd39800916",
+      "name": "Search contacts",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get many records": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a record - personal": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search - personal": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create or Update Existing - personal": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "delete record - personal": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get record - personal": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update record - personal": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search notifications": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get record - notifications": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "get record - contacts": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search contacts": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "290e3d08-51e3-4e1c-9f38-7fc4d6030100",
+  "meta": {
+    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+  },
+  "id": "pVefSuWmOKcpQgUa",
+  "tags": []
+}

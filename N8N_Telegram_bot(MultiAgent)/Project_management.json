@@ -1,0 +1,815 @@
+{
+  "name": "project management",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1100,
+        -200
+      ],
+      "id": "f5215cec-95af-4d69-be94-999ee6d1b920",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('When Executed by Another Workflow').item.json.query }}",
+        "options": {
+          "systemMessage": "=You are an project manager agent, You will be managing and taking note of all projects, tasks and todos of company and the client.\n\nSo when someone asks about the project details, you'll be giving the project details. \n\nAlso you can add notes (feedback or description) and you can delete, create and manage projects. "
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1380,
+        -140
+      ],
+      "id": "a2c16216-eb55-4b90-922d-ac80b727eccc",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1200,
+        140
+      ],
+      "id": "12bd87a1-b08f-4c0d-8946-54d738c8031d",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "UhE57FbNZS6UBi1o",
+          "name": "Demo Acc"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "dasds"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1360,
+        100
+      ],
+      "id": "b5215923-284d-4588-b318-d797f82ee11b",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo",
+          "mode": "list",
+          "cachedResultName": "Web I Mother Doc",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 929617135,
+          "mode": "list",
+          "cachedResultName": "Client Tasks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit#gid=929617135"
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1380,
+        340
+      ],
+      "id": "1be001ce-ea84-43ce-a37c-829ef579f581",
+      "name": "Clients task",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e2v3MlUK6X59ZyIZ",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo",
+          "mode": "list",
+          "cachedResultName": "Web I Mother Doc",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Company Tasks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1540,
+        340
+      ],
+      "id": "cedc88a8-0711-46eb-96f2-395ddcdc0b55",
+      "name": "Company task",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e2v3MlUK6X59ZyIZ",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo",
+          "mode": "list",
+          "cachedResultName": "Web I Mother Doc",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Company Tasks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Goals": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Goals__using_to_match_', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "Priority": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Priority', ``, 'string') }}",
+            "Owner": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Owner', ``, 'string') }}",
+            "Start date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_date', ``, 'string') }}",
+            "End date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_date', ``, 'string') }}",
+            "Notes": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notes', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "Goals"
+          ],
+          "schema": [
+            {
+              "id": "Goals",
+              "displayName": "Goals",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Owner",
+              "displayName": "Owner",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Start date",
+              "displayName": "Start date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "End date",
+              "displayName": "End date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1700,
+        340
+      ],
+      "id": "a822fb9c-8aad-40fb-ac2e-813bea541da7",
+      "name": "update notes in company task",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e2v3MlUK6X59ZyIZ",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo",
+          "mode": "list",
+          "cachedResultName": "Web I Mother Doc",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Company Tasks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Goals": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Goals__using_to_match_', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "Priority": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Priority', ``, 'string') }}",
+            "Owner": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Owner', ``, 'string') }}",
+            "Start date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_date', ``, 'string') }}",
+            "End date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_date', ``, 'string') }}",
+            "Notes": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notes', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "Goals"
+          ],
+          "schema": [
+            {
+              "id": "Goals",
+              "displayName": "Goals",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Owner",
+              "displayName": "Owner",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Start date",
+              "displayName": "Start date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "End date",
+              "displayName": "End date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1840,
+        340
+      ],
+      "id": "c723f379-e964-4558-8894-94edd730278a",
+      "name": "update notes in client task",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e2v3MlUK6X59ZyIZ",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo",
+          "mode": "list",
+          "cachedResultName": "Web I Mother Doc",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Company Tasks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Goals": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Goals', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "Priority": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Priority', ``, 'string') }}",
+            "End date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_date', ``, 'string') }}",
+            "Start date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_date', ``, 'string') }}",
+            "Owner": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Owner', ``, 'string') }}",
+            "Notes": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notes', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Goals",
+              "displayName": "Goals",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Owner",
+              "displayName": "Owner",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Start date",
+              "displayName": "Start date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "End date",
+              "displayName": "End date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1300,
+        520
+      ],
+      "id": "0637af68-470f-4c31-9e49-4fdff6d7bae6",
+      "name": "Create company task",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e2v3MlUK6X59ZyIZ",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo",
+          "mode": "list",
+          "cachedResultName": "Web I Mother Doc",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Company Tasks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Goals": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Goals', ``, 'string') }}",
+            "Status": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Status', ``, 'string') }}",
+            "Priority": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Priority', ``, 'string') }}",
+            "End date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End_date', ``, 'string') }}",
+            "Start date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_date', ``, 'string') }}",
+            "Owner": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Owner', ``, 'string') }}",
+            "Notes": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notes', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Goals",
+              "displayName": "Goals",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Owner",
+              "displayName": "Owner",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Start date",
+              "displayName": "Start date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "End date",
+              "displayName": "End date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1460,
+        500
+      ],
+      "id": "bd009810-3418-4aed-a172-174687c84933",
+      "name": "create clients task",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e2v3MlUK6X59ZyIZ",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo",
+          "mode": "list",
+          "cachedResultName": "Web I Mother Doc",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Company Tasks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit#gid=0"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1740,
+        520
+      ],
+      "id": "a8c00b4a-cc34-45aa-ad47-ff392d3f5f9b",
+      "name": "delete company task",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e2v3MlUK6X59ZyIZ",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo",
+          "mode": "list",
+          "cachedResultName": "Web I Mother Doc",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Company Tasks",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/15IpJm8oHiZMSc0_F6ZRZbNWPH3bpvleN4skub_l95qo/edit#gid=0"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.5,
+      "position": [
+        1900,
+        540
+      ],
+      "id": "a33e039e-9f73-4793-8900-bf4cd2ed3f94",
+      "name": "delete client task",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "e2v3MlUK6X59ZyIZ",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clients task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Company task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update notes in company task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update notes in client task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create company task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "create clients task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "delete company task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "delete client task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fa3a3984-2385-4a23-804c-877fbadb4a0e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+  },
+  "id": "7KcYhJhz1K4dbXns",
+  "tags": []
+}

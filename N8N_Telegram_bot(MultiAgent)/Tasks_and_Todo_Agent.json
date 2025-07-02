@@ -1,0 +1,424 @@
+{
+  "name": "Tasks and Todo Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -140,
+        440
+      ],
+      "id": "dd92551b-9f0c-4954-b829-128bbe1800e2",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('When Executed by Another Workflow').item.json.query }}",
+        "options": {
+          "systemMessage": "=You are TaskManager_Agent, Salman’s AI-powered task and project manager. Your job is to create, update, track, move, and close tasks while keeping things smooth and organized. You ensure Salman stays on top of everything, follows up automatically, and gets reminders only when needed.\n\n✅ Capabilities:\n🆕 Create → Add new tasks based on Salman’s requests.\n✏️ Update → Modify task details like deadlines, priority, or assignee.\n📌 Get / Get Many → Fetch a specific task or show a list of all tasks.\n✅ Close / Reopen → Mark tasks as complete or reopen them when needed.\n🗑️ Delete → Remove tasks that are no longer needed.\n🔄 Move → Change the position or category of a task for better organization.\n\n\nCurrent Date: {{ $now }}\nAlways give date in: (dd/mm/yyyy) format"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        80,
+        440
+      ],
+      "id": "8420894e-8b34-47c5-bf82-2c36af67e25b",
+      "name": "AI Agent",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -160,
+        760
+      ],
+      "id": "5dda5c24-146d-4167-ad4f-3cab65c0f9a1",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "UhE57FbNZS6UBi1o",
+          "name": "Demo Acc"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "close",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        120,
+        740
+      ],
+      "id": "247f4452-c4cb-4d1f-9100-1f5be7e166a6",
+      "name": "close task",
+      "credentials": {
+        "todoistApi": {
+          "id": "iJi8xe6FIvubg6Hb",
+          "name": "Todoist account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        220,
+        660
+      ],
+      "id": "40b0df88-191e-4b35-87ce-c4e141489c21",
+      "name": "delete task",
+      "credentials": {
+        "todoistApi": {
+          "id": "iJi8xe6FIvubg6Hb",
+          "name": "Todoist account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        200,
+        900
+      ],
+      "id": "fae7e7e9-1375-4001-9919-fc2f1dfcd3b0",
+      "name": "Get a single task",
+      "credentials": {
+        "todoistApi": {
+          "id": "iJi8xe6FIvubg6Hb",
+          "name": "Todoist account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "filters": {
+          "filter": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Filter', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        360,
+        860
+      ],
+      "id": "6e88d98d-28cd-4db4-a622-c412f3995e58",
+      "name": "Get many tasks",
+      "credentials": {
+        "todoistApi": {
+          "id": "iJi8xe6FIvubg6Hb",
+          "name": "Todoist account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "move",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}",
+        "project": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Project_Name_or_ID', ``, 'string') }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        540,
+        880
+      ],
+      "id": "9bb8ef43-8efe-41b2-be4b-3993a391f762",
+      "name": "move a task",
+      "credentials": {
+        "todoistApi": {
+          "id": "iJi8xe6FIvubg6Hb",
+          "name": "Todoist account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "reopen",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}"
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        720,
+        820
+      ],
+      "id": "df9cfdfc-89f5-446e-becd-ccbf5998a15b",
+      "name": "reopen task",
+      "credentials": {
+        "todoistApi": {
+          "id": "iJi8xe6FIvubg6Hb",
+          "name": "Todoist account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "taskId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Task_ID', ``, 'string') }}",
+        "updateFields": {}
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        440,
+        680
+      ],
+      "id": "763f746d-5642-454f-8cc9-eaae750f7b52",
+      "name": "update task",
+      "credentials": {
+        "todoistApi": {
+          "id": "iJi8xe6FIvubg6Hb",
+          "name": "Todoist account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7ab380a2-a8d3-421c-ab4e-748ea8fb7904",
+              "name": "response",
+              "value": "Unable to perform task. Please try again.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4369f217-05ad-49e1-8f1f-8a73600cd97e",
+      "name": "Try Again",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        900,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "39c2f302-03be-4464-a17a-d7cc481d6d44",
+              "name": "=response",
+              "value": "={{$json.output}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2cad0064-04a8-4309-bdb0-e3de824aef7e",
+      "name": "Success",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        740,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "project": {
+          "__rl": true,
+          "value": "2323622913",
+          "mode": "list",
+          "cachedResultName": "Inbox"
+        },
+        "content": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Content', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.todoistTool",
+      "typeVersion": 2.1,
+      "position": [
+        640,
+        660
+      ],
+      "id": "319a0258-0d2d-45d0-9d6e-2e94ccdef72d",
+      "name": "create task",
+      "credentials": {
+        "todoistApi": {
+          "id": "iJi8xe6FIvubg6Hb",
+          "name": "Todoist account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Success",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Try Again",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "close task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "delete task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a single task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many tasks": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "move a task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "reopen task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "update task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "create task": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "77705910-330f-4740-a308-6961a8de4c5c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+  },
+  "id": "ng7D0V6aD7EqZFf5",
+  "tags": []
+}

@@ -1,0 +1,279 @@
+{
+  "name": "Notify memory",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "e8da28bb-7882-433d-b978-1e8e76abf05b",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        20,
+        0
+      ],
+      "id": "efc5ab80-4d46-40e6-9a8c-e1b0d0a1916a",
+      "name": "Webhook",
+      "webhookId": "e8da28bb-7882-433d-b978-1e8e76abf05b"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=✅ AI Agent Prompt:\nYou are an AI assistant designed to manage notifications for a web development agency. Your job is to intelligently filter, categorize, and store only meaningful notifications as memory.\n\n\nAnd only save the important or relevant messages. You can save other personal messages but when it's a message always verify and save only the important ones. \n\n*** And ignored messages should not be saved in the memory.  \n\n\n📌 How to Process Notifications:\n\n1️⃣ Filter Out Spam & Unwanted Messages\nIgnore promotional notifications, ads, and irrelevant group messages.\nAvoid saving automated system alerts or random app updates.\nIf It's a spam or promotional message don't save it in the memory.\n\n2️⃣ Prioritize Notifications Based on Relevance:\n✅ Save messages related to web development, business, or client projects.\n✅ Keep personal and work-related notifications.\n❌ Ignore unnecessary social media group chats unless business-related.\n\n3️⃣ Reframe Notifications as Memory Entries\nInstead of saving raw notifications, summarize them in a context-aware manner.\n\nExample:\n❌ Original Notification: \"What can we do about the web project?\"\n✅ Saved as Memory: \"Salman asked about a web project.\"\n\n\n4️⃣ Store as Long-Term Memory Instead of Just Alerts\nEnsure that stored notifications act as a reference for future context.\nUse the airtable tool to create and update the memory. This is your long term memory. Save the message with the timestamp.\n\n📌 Example Memory Entries:\n✅ Client John asked about website redesign pricing.\n✅ Salman requested updates on an automation project.\n✅ New lead from LinkedIn wants a website consultation.\n\n\n📌 Final Instruction:\nOnly store useful notifications that might help Salman in his business or personal life or work. Ignore anything irrelevant. \n\n\nHere is the notification:\nTitle: {{ $json.body.title }}\nMessage: {{ $json.body.message }}\nTimestamp: {{ $json.body.timestamp }}\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        220,
+        0
+      ],
+      "id": "578a1944-3f3f-46de-9939-606492fa7a00",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        40,
+        280
+      ],
+      "id": "b31dd0b5-87cf-45bd-8309-d7160eb27ec4",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "UhE57FbNZS6UBi1o",
+          "name": "Demo Acc"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "notify"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        180,
+        240
+      ],
+      "id": "11c7a48f-9a93-4e4a-b615-6aff30d2c72c",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblnifhM4rV6psSrN",
+          "mode": "list",
+          "cachedResultName": "Notifications",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tblnifhM4rV6psSrN"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Notifications": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notifications', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Notifications",
+              "displayName": "Notifications",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Call logs",
+              "displayName": "Call logs",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        360,
+        260
+      ],
+      "id": "dc52eb26-5418-4d69-8c0d-2328e7230e1b",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "base": {
+          "__rl": true,
+          "value": "appSR6OLUZFuWzXiD",
+          "mode": "list",
+          "cachedResultName": "knowledge base",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblnifhM4rV6psSrN",
+          "mode": "list",
+          "cachedResultName": "Notifications",
+          "cachedResultUrl": "https://airtable.com/appSR6OLUZFuWzXiD/tblnifhM4rV6psSrN"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Notifications": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notifications', ``, 'string') }}",
+            "id": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('id__using_to_match_', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Notifications",
+              "displayName": "Notifications",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        480,
+        260
+      ],
+      "id": "37be95c8-fcf4-44b6-b9d6-6f3300ecd9b4",
+      "name": "Airtable1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "0mhxduPjNCa17zWU",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Airtable1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "35b72b8c-bdff-40f3-86a1-24b5968d029c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+  },
+  "id": "XogSizePhKGnkEvv",
+  "tags": []
+}

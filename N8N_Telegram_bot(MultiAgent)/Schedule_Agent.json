@@ -1,0 +1,183 @@
+{
+  "name": "Schedule Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "resume": "specificTime",
+        "dateTime": "={{ $json['event_time'] }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        -40,
+        -160
+      ],
+      "id": "57ecd4b0-9465-4e6e-966e-63cb9cd9f446",
+      "name": "Wait1",
+      "webhookId": "1cd4796d-5394-4d9b-9769-d0dc8a75d294"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $('When Executed by Another Workflow').item.json.query }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -280,
+        -160
+      ],
+      "id": "efcfbcb2-f13e-48a9-93e6-fe962f5c1706",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=I'll be sending a reminder, So what you'll be doing is. \n\nYou always remind the user that they have this task to do. \n\nYou'll be passing a reminder as a command. You're the final reminder that should output a doubale command. Just output the reminder and nothing else.\n\nexample Input: \nEvent name: check inbox\nExample output: \nplease check my inbox now. \n\nActual input:\nEvent name: {{ $json['event_name'] }}\n\nGive me the output now. ",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        200,
+        -160
+      ],
+      "id": "4f5bca25-33fb-4555-a120-356439fc02b3",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        20,
+        200
+      ],
+      "id": "ce2bf400-f557-4bf4-ba41-ce74398dc696",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "UhE57FbNZS6UBi1o",
+          "name": "Demo Acc"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -500,
+        -160
+      ],
+      "id": "a215bfe3-edb3-4d12-a3a4-f12b8f47af48",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "name": "main_agent",
+        "workflowId": {
+          "__rl": true,
+          "value": "I11nwRFREUHwRmLy",
+          "mode": "list",
+          "cachedResultName": "My project — Jeni"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        420,
+        200
+      ],
+      "id": "0508c782-4598-4d2c-b082-d8920a30847d",
+      "name": "main agent"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "main agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "51bea540-7337-4727-89b0-451ab74d225b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+  },
+  "id": "LhiJNg23tznrgHi6",
+  "tags": []
+}
