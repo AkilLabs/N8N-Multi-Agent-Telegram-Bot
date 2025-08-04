@@ -2,6 +2,33 @@
 
 An intelligent multi-agent system built with N8N that provides a comprehensive personal assistant through Telegram. The bot manages calendar, tasks, emails, research, memory, and project management through specialized AI agents.
 
+## 🏗️ Architecture Overview
+
+**Main_agent.json** is the hierarchical top-level agent (the "Main Agent"). All other agents (Calendar, Email, Tasks, Memory, etc.) are added as sub-workflows (tools) to the Main Agent. This enables the Main Agent to route requests and delegate tasks to specialized sub-agents.
+
+### Sub-Workflow (Sub-Agent) Structure
+
+Each sub-agent (such as `Memory_agent.json`, `Project_management.json`, `Tasks_and_Todo_Agent.json`, etc.) is a self-contained workflow. These are imported into the Main Agent as tools using the `@n8n/n8n-nodes-langchain.toolWorkflow` node type.
+
+#### Example: `Memory_agent.json` as a Sub-Workflow
+
+- The `Memory_agent.json` workflow contains its own AI Agent node, OpenAI node, and Airtable nodes for memory storage and retrieval.
+- It is triggered by the `executeWorkflowTrigger` node when called as a tool from the Main Agent.
+- All required credentials (e.g., OpenAI API, Airtable API) must be configured in N8N and assigned to the relevant nodes in the sub-agent workflow.
+
+#### How to Add Sub-Agents as Tools in the Main Agent
+
+1. **Open `Main_agent.json` in N8N.**
+2. Locate the **AI Agent node** (usually named `Manager Agent`).
+3. For each sub-agent (e.g., Memory, Project Management, Tasks), add a **Tool** in the AI Agent node:
+   - Use the `@n8n/n8n-nodes-langchain.toolWorkflow` node type.
+   - Set the `workflowId` to the corresponding sub-agent workflow (e.g., `Memory_agent.json`).
+   - Provide a clear `name` and `description` for each tool.
+4. **Connect the tool nodes** to the AI Agent node as shown in the sample `Main_agent.json`.
+5. **Configure required credentials** for each agent (OpenAI, Airtable, Google, etc.) in the N8N credentials manager. Assign them to the relevant nodes in each sub-agent workflow.
+
+See the `Main_agent.json` and sub-agent files (e.g., `Memory_agent.json`) for working examples of this hierarchical structure.
+
 ## 🚀 Quick Setup
 
 ### Option 1: N8N Cloud (Recommended for Beginners)
