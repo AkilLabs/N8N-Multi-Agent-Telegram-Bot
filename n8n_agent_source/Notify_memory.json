@@ -1,5 +1,5 @@
 {
-  "name": "Notify memory",
+  "name": "Notify_memory",
   "nodes": [
     {
       "parameters": {
@@ -10,10 +10,10 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        20,
+        0,
         0
       ],
-      "id": "efc5ab80-4d46-40e6-9a8c-e1b0d0a1916a",
+      "id": "72b171d9-5ff1-46d3-b2e2-8b1d98a9c969",
       "name": "Webhook",
       "webhookId": "e8da28bb-7882-433d-b978-1e8e76abf05b"
     },
@@ -26,35 +26,11 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        220,
+        208,
         0
       ],
-      "id": "578a1944-3f3f-46de-9939-606492fa7a00",
+      "id": "da0e9ea4-557f-4d60-92aa-b4bf5dce72db",
       "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        40,
-        280
-      ],
-      "id": "b31dd0b5-87cf-45bd-8309-d7160eb27ec4",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
     },
     {
       "parameters": {
@@ -64,10 +40,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        180,
+        160,
         240
       ],
-      "id": "11c7a48f-9a93-4e4a-b615-6aff30d2c72c",
+      "id": "57cd2612-4e7e-4bde-9f48-92f7cbee79ca",
       "name": "Window Buffer Memory"
     },
     {
@@ -125,17 +101,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        360,
-        260
+        352,
+        272
       ],
-      "id": "dc52eb26-5418-4d69-8c0d-2328e7230e1b",
-      "name": "Airtable",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "c750c261-3bfe-41a2-9eff-13e1c88538ef",
+      "name": "Airtable"
     },
     {
       "parameters": {
@@ -194,15 +164,28 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        480,
-        260
+        464,
+        272
       ],
-      "id": "37be95c8-fcf4-44b6-b9d6-6f3300ecd9b4",
-      "name": "Airtable1",
+      "id": "2d3999ab-633b-449b-97a7-3534847bd87b",
+      "name": "Airtable1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        0,
+        240
+      ],
+      "id": "dd5d79db-fd0b-4f32-90a5-164132f73234",
+      "name": "Google Gemini Chat Model",
       "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
+        "googlePalmApi": {
+          "id": "SpqoEmnmEa1Cy1lH",
+          "name": "Google Gemini(PaLM) Api account 2"
         }
       }
     }
@@ -215,17 +198,6 @@
           {
             "node": "AI Agent",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -263,17 +235,27 @@
           }
         ]
       ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "35b72b8c-bdff-40f3-86a1-24b5968d029c",
+  "versionId": "6be46ae8-f388-4d4a-a5c2-dc1c6cb15cae",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+    "instanceId": "498dd19097f281cd404ce965f402e87502d7baa728dab9dd09f3fe98a22d6ef2"
   },
-  "id": "XogSizePhKGnkEvv",
+  "id": "B5bQsVmoR5DPsTwW",
   "tags": []
 }

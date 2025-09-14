@@ -1,5 +1,5 @@
 {
-  "name": "project management",
+  "name": "Project_management",
   "nodes": [
     {
       "parameters": {
@@ -8,10 +8,10 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        1100,
-        -200
+        0,
+        0
       ],
-      "id": "f5215cec-95af-4d69-be94-999ee6d1b920",
+      "id": "91701153-25c8-4515-96c4-809b2fc0e255",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -25,35 +25,11 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        1380,
-        -140
+        288,
+        64
       ],
-      "id": "a2c16216-eb55-4b90-922d-ac80b727eccc",
+      "id": "0d75296d-6e37-417d-9400-7e3d2119d75c",
       "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        1200,
-        140
-      ],
-      "id": "12bd87a1-b08f-4c0d-8946-54d738c8031d",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
     },
     {
       "parameters": {
@@ -63,10 +39,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        1360,
-        100
+        272,
+        304
       ],
-      "id": "b5215923-284d-4588-b318-d797f82ee11b",
+      "id": "aa5163fb-a36c-4a67-b8ba-c5aa087e5084",
       "name": "Window Buffer Memory"
     },
     {
@@ -91,17 +67,11 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.5,
       "position": [
-        1380,
-        340
+        288,
+        544
       ],
-      "id": "1be001ce-ea84-43ce-a37c-829ef579f581",
-      "name": "Clients task",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "e2v3MlUK6X59ZyIZ",
-          "name": "Google Sheets account 2"
-        }
-      }
+      "id": "a543fe60-a327-45b9-bc8a-ca8dcbf1df46",
+      "name": "Clients task"
     },
     {
       "parameters": {
@@ -124,17 +94,11 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.5,
       "position": [
-        1540,
-        340
+        448,
+        544
       ],
-      "id": "cedc88a8-0711-46eb-96f2-395ddcdc0b55",
-      "name": "Company task",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "e2v3MlUK6X59ZyIZ",
-          "name": "Google Sheets account 2"
-        }
-      }
+      "id": "bb6e034d-4229-4a5e-bc9f-bbb79a7ec6e1",
+      "name": "Company task"
     },
     {
       "parameters": {
@@ -245,17 +209,11 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.5,
       "position": [
-        1700,
-        340
+        608,
+        544
       ],
-      "id": "a822fb9c-8aad-40fb-ac2e-813bea541da7",
-      "name": "update notes in company task",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "e2v3MlUK6X59ZyIZ",
-          "name": "Google Sheets account 2"
-        }
-      }
+      "id": "5cdc660d-c146-4a6c-9110-a10740218b28",
+      "name": "update notes in company task"
     },
     {
       "parameters": {
@@ -366,17 +324,11 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.5,
       "position": [
-        1840,
-        340
+        752,
+        544
       ],
-      "id": "c723f379-e964-4558-8894-94edd730278a",
-      "name": "update notes in client task",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "e2v3MlUK6X59ZyIZ",
-          "name": "Google Sheets account 2"
-        }
-      }
+      "id": "cdbbf6ca-4892-4060-8449-a7ee9a6f3829",
+      "name": "update notes in client task"
     },
     {
       "parameters": {
@@ -480,17 +432,11 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.5,
       "position": [
-        1300,
-        520
+        208,
+        720
       ],
-      "id": "0637af68-470f-4c31-9e49-4fdff6d7bae6",
-      "name": "Create company task",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "e2v3MlUK6X59ZyIZ",
-          "name": "Google Sheets account 2"
-        }
-      }
+      "id": "79b1dc4c-e804-4571-bdc2-5a31cda380eb",
+      "name": "Create company task"
     },
     {
       "parameters": {
@@ -594,17 +540,11 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.5,
       "position": [
-        1460,
-        500
+        368,
+        704
       ],
-      "id": "bd009810-3418-4aed-a172-174687c84933",
-      "name": "create clients task",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "e2v3MlUK6X59ZyIZ",
-          "name": "Google Sheets account 2"
-        }
-      }
+      "id": "a0a3d01b-26b3-48b2-a486-587f6aae639e",
+      "name": "create clients task"
     },
     {
       "parameters": {
@@ -629,17 +569,11 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.5,
       "position": [
-        1740,
-        520
+        640,
+        720
       ],
-      "id": "a8c00b4a-cc34-45aa-ad47-ff392d3f5f9b",
-      "name": "delete company task",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "e2v3MlUK6X59ZyIZ",
-          "name": "Google Sheets account 2"
-        }
-      }
+      "id": "cda16848-6fb5-4ac8-8e75-e5d6985f34e0",
+      "name": "delete company task"
     },
     {
       "parameters": {
@@ -664,15 +598,28 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.5,
       "position": [
-        1900,
-        540
+        800,
+        752
       ],
-      "id": "a33e039e-9f73-4793-8900-bf4cd2ed3f94",
-      "name": "delete client task",
+      "id": "2bf17598-177b-410e-8867-4f012a91ba8f",
+      "name": "delete client task"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        96,
+        304
+      ],
+      "id": "8d706283-72d7-49dc-90a3-044d740ade3c",
+      "name": "Google Gemini Chat Model",
       "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "e2v3MlUK6X59ZyIZ",
-          "name": "Google Sheets account 2"
+        "googlePalmApi": {
+          "id": "SpqoEmnmEa1Cy1lH",
+          "name": "Google Gemini(PaLM) Api account 2"
         }
       }
     }
@@ -685,17 +632,6 @@
           {
             "node": "AI Agent",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -799,17 +735,27 @@
           }
         ]
       ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "fa3a3984-2385-4a23-804c-877fbadb4a0e",
+  "versionId": "d23232ef-c361-4810-aa7b-c0c0f30b27d4",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+    "instanceId": "498dd19097f281cd404ce965f402e87502d7baa728dab9dd09f3fe98a22d6ef2"
   },
-  "id": "7KcYhJhz1K4dbXns",
+  "id": "rOjCXhMvJPUvTMoN",
   "tags": []
 }

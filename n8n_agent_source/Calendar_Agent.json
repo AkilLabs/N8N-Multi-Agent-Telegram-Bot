@@ -1,5 +1,5 @@
 {
-  "name": "Calendar Agent",
+  "name": "Calendar_Agent",
   "nodes": [
     {
       "parameters": {
@@ -9,9 +9,9 @@
       "typeVersion": 1.1,
       "position": [
         0,
-        180
+        0
       ],
-      "id": "836a6fa7-edc3-42d6-958f-95cd9b3fddc2",
+      "id": "ed2f55a1-41df-4d24-afe4-86a2abfe9b4f",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -25,35 +25,11 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        220,
-        200
+        224,
+        32
       ],
-      "id": "56ae41a4-665f-465e-8c5e-a735c87116a8",
+      "id": "4740cee8-0004-46e3-b385-45a2e75b114e",
       "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        0,
-        440
-      ],
-      "id": "02039fe8-f383-4368-bbe6-cb6ff345a5b7",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
     },
     {
       "parameters": {
@@ -73,16 +49,10 @@
       "typeVersion": 1.3,
       "position": [
         320,
-        580
+        400
       ],
-      "id": "e6ec6a19-f260-432d-a61b-9d4ab61bc809",
-      "name": "Get all event",
-      "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "TotTsb67qiWgjUkr",
-          "name": "Google Calendar account"
-        }
-      }
+      "id": "0b4bac02-264c-4273-b53f-d0eb266fcb64",
+      "name": "Get all event"
     },
     {
       "parameters": {
@@ -99,17 +69,11 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        220,
-        440
+        224,
+        272
       ],
-      "id": "28127442-d605-458c-b732-f99010c940ef",
-      "name": "Delete event",
-      "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "TotTsb67qiWgjUkr",
-          "name": "Google Calendar account"
-        }
-      }
+      "id": "e71b3dc5-38f4-4edf-827e-cbbbf52ba937",
+      "name": "Delete event"
     },
     {
       "parameters": {
@@ -126,17 +90,11 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        580,
-        440
+        592,
+        272
       ],
-      "id": "6a425fd9-ce9b-4eba-bd13-0d1bf8d4ed6e",
-      "name": "Get a single event",
-      "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "TotTsb67qiWgjUkr",
-          "name": "Google Calendar account"
-        }
-      }
+      "id": "4d2632b1-14e8-4689-8c8b-59d7fdfeadef",
+      "name": "Get a single event"
     },
     {
       "parameters": {
@@ -155,16 +113,10 @@
       "typeVersion": 1.3,
       "position": [
         480,
-        580
+        400
       ],
-      "id": "24f2aa57-0fbb-41b1-8bfb-646eadd3d918",
-      "name": "Update event",
-      "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "TotTsb67qiWgjUkr",
-          "name": "Google Calendar account"
-        }
-      }
+      "id": "97dcef5a-0cd4-45fc-b944-a090ba88f4f6",
+      "name": "Update event"
     },
     {
       "parameters": {
@@ -182,17 +134,11 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        660,
-        580
+        672,
+        400
       ],
-      "id": "85de1da5-9891-4373-bb87-d9ce440f3f13",
-      "name": "Availablity operation agent",
-      "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "TotTsb67qiWgjUkr",
-          "name": "Google Calendar account"
-        }
-      }
+      "id": "c2ff702c-3abf-4540-a775-b9a389db48ab",
+      "name": "Availablity operation agent"
     },
     {
       "parameters": {
@@ -215,17 +161,11 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        140,
-        580
+        144,
+        400
       ],
-      "id": "f54eda44-0577-4941-b020-562f5c820c57",
-      "name": "Create Event with attendee",
-      "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "TotTsb67qiWgjUkr",
-          "name": "Google Calendar account"
-        }
-      }
+      "id": "5a0bd0cd-1171-45b8-a00a-64c95e561d9a",
+      "name": "Create Event with attendee"
     },
     {
       "parameters": {
@@ -246,15 +186,28 @@
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
       "position": [
-        820,
-        580
+        832,
+        400
       ],
-      "id": "c4f19664-3d60-40f3-adcb-4e17ad4b39a9",
-      "name": "Create Event without attendee",
+      "id": "8cb7f879-0db6-46e2-a4aa-263137c7c619",
+      "name": "Create Event without attendee"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        32,
+        288
+      ],
+      "id": "8d3d0dd7-93b4-432a-af84-956a52420a14",
+      "name": "Google Gemini Chat Model",
       "credentials": {
-        "googleCalendarOAuth2Api": {
-          "id": "TotTsb67qiWgjUkr",
-          "name": "Google Calendar account"
+        "googlePalmApi": {
+          "id": "SpqoEmnmEa1Cy1lH",
+          "name": "Google Gemini(PaLM) Api account 2"
         }
       }
     }
@@ -267,17 +220,6 @@
           {
             "node": "AI Agent",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -359,17 +301,27 @@
           }
         ]
       ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "4e901a21-9ade-4ebe-b594-0dbee04d1fd5",
+  "versionId": "7f4d6ab8-ae9d-4001-b233-534972180831",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+    "instanceId": "498dd19097f281cd404ce965f402e87502d7baa728dab9dd09f3fe98a22d6ef2"
   },
-  "id": "q3EVkA4zwY1dsor7",
+  "id": "WvIyILzkJQLFQJgp",
   "tags": []
 }

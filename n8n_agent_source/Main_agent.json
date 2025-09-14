@@ -1,30 +1,6 @@
 {
-  "name": "Main",
+  "name": "Main_agent",
   "nodes": [
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-4o-mini",
-          "mode": "id"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        200,
-        780
-      ],
-      "id": "604e3c38-06e7-4029-97cd-4157bc13e904",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
-    },
     {
       "parameters": {
         "sessionIdType": "customKey",
@@ -34,10 +10,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        340,
-        740
+        832,
+        832
       ],
-      "id": "8a7f7cf4-3889-4c85-b5b2-a7f9c7ed28c7",
+      "id": "17d414ed-5512-4e5f-ba9c-3cc558179404",
       "name": "Window Buffer Memory"
     },
     {
@@ -50,18 +26,12 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
       "position": [
-        -880,
-        440
+        -400,
+        528
       ],
-      "id": "390c85db-e779-4237-837c-52a7cde600ac",
+      "id": "031c1511-20d8-412c-b008-e2a01d6c0e62",
       "name": "Telegram Trigger",
-      "webhookId": "600c6d64-98f1-4597-9448-1397bd15b675",
-      "credentials": {
-        "telegramApi": {
-          "id": "VVxY0WOtihPcmEn5",
-          "name": "Telegram account"
-        }
-      }
+      "webhookId": "600c6d64-98f1-4597-9448-1397bd15b675"
     },
     {
       "parameters": {
@@ -74,60 +44,28 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        1060,
-        400
+        1552,
+        480
       ],
-      "id": "ed451eaf-4e3a-47ad-9b5c-e025a450d254",
+      "id": "9890000b-cc3f-44c4-8969-259fb4bcb8dc",
       "name": "Telegram",
-      "webhookId": "3cd55a7d-9a5e-4747-b7bf-9a93079955f2",
-      "credentials": {
-        "telegramApi": {
-          "id": "VVxY0WOtihPcmEn5",
-          "name": "Telegram account"
-        }
-      }
+      "webhookId": "3cd55a7d-9a5e-4747-b7bf-9a93079955f2"
     },
     {
       "parameters": {
         "resource": "file",
-        "fileId": "={{ $json.message.voice.file_id }}"
+        "fileId": "={{ $json.message.voice.file_id }}",
+        "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -420,
-        440
+        64,
+        528
       ],
-      "id": "dc135114-c3ff-4125-bebc-22bca30b5a37",
+      "id": "41b6da5e-28c7-432e-a373-5ed415ef5238",
       "name": "Telegram1",
-      "webhookId": "8b826288-7a45-4a12-bbf7-e07462532efb",
-      "credentials": {
-        "telegramApi": {
-          "id": "VVxY0WOtihPcmEn5",
-          "name": "Telegram account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "audio",
-        "operation": "translate",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 1.8,
-      "position": [
-        -240,
-        440
-      ],
-      "id": "5f7d1a0c-06ce-4d9f-9f3f-5818be8a8133",
-      "name": "OpenAI",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
+      "webhookId": "8b826288-7a45-4a12-bbf7-e07462532efb"
     },
     {
       "parameters": {
@@ -136,10 +74,10 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3,
       "position": [
-        380,
-        340
+        864,
+        432
       ],
-      "id": "17f99810-4cf0-4a4f-be2a-4f4e474fed08",
+      "id": "dd8d717a-14a6-4326-8ad0-4bb7059c3237",
       "name": "Merge"
     },
     {
@@ -159,10 +97,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -420,
-        280
+        64,
+        368
       ],
-      "id": "bc92c515-f2d9-44ef-be23-b490b2f096fd",
+      "id": "d90b37a5-7cf9-4143-9c78-5740ccfc5759",
       "name": "Edit Fields"
     },
     {
@@ -182,10 +120,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -420,
-        600
+        64,
+        688
       ],
-      "id": "2940fd9b-964a-472e-8b9e-fade4649b7f6",
+      "id": "6f357b81-b0fc-4e07-9bea-09ceec5c5988",
       "name": "Edit Fields1"
     },
     {
@@ -290,10 +228,10 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
       "position": [
-        -640,
-        420
+        -144,
+        512
       ],
-      "id": "c31caaa4-f103-4b2e-aab3-678b8eaac6db",
+      "id": "608ef54e-fa41-4b4a-90f3-1571dc1a1e72",
       "name": "Switch"
     },
     {
@@ -308,10 +246,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        620,
-        400
+        1104,
+        480
       ],
-      "id": "48c17ed5-c689-42be-a0bb-8c2ba499cc70",
+      "id": "a70477b7-1436-4edd-a5ac-e1f7dd6fd4e1",
       "name": "Manager Agent",
       "alwaysOutputData": false,
       "onError": "continueRegularOutput"
@@ -338,10 +276,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        1260,
-        720
+        1744,
+        800
       ],
-      "id": "153faefa-12d1-40ea-ba49-700a8cd84d89",
+      "id": "5ddcd749-7481-4015-8df9-f9106248bd54",
       "name": "calendar_agent"
     },
     {
@@ -366,10 +304,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        940,
-        720
+        1424,
+        800
       ],
-      "id": "9bdaafd0-3b18-4dcb-b5ed-22217a96a01a",
+      "id": "8557675e-1019-4363-a269-12162d79f11e",
       "name": "email_agent"
     },
     {
@@ -393,10 +331,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        640,
-        700
+        1136,
+        784
       ],
-      "id": "72565d85-f7ec-436d-8e80-056248b13d6d",
+      "id": "bee21bcb-8c02-4444-b57c-81434370b019",
       "name": "todo_and_task_manager"
     },
     {
@@ -421,10 +359,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        480,
-        700
+        976,
+        784
       ],
-      "id": "2aeb853b-5da5-44be-a0e1-e0d84729390a",
+      "id": "f786289f-41d9-4229-b102-394dfbe2cdf2",
       "name": "Memory_Base"
     },
     {
@@ -449,10 +387,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        1100,
-        720
+        1584,
+        800
       ],
-      "id": "b27cc2da-20c7-4f7b-bc1a-95aca104b85c",
+      "id": "83e6e7af-e14b-4ed2-a5e7-625c5bd4f7a4",
       "name": "project_management"
     },
     {
@@ -469,10 +407,10 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -880,
-        260
+        -400,
+        352
       ],
-      "id": "87ec4219-b5f4-438c-a61b-089839537381",
+      "id": "c7293885-5154-4c9e-84c7-c4e9107e7a3f",
       "name": "Schedule Trigger"
     },
     {
@@ -492,10 +430,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -420,
-        -80
+        64,
+        0
       ],
-      "id": "dce51cc7-493a-422b-a0d4-da9fcf9de231",
+      "id": "75eafa04-a5d0-4d28-96a4-892742a10c7e",
       "name": "Edit Fields3"
     },
     {
@@ -520,10 +458,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        800,
-        720
+        1296,
+        800
       ],
-      "id": "7425e017-4c3d-4cc0-9dcb-830cc5a484ff",
+      "id": "1837238f-2c43-46aa-8ab7-ed52c1acce91",
       "name": "research_Agent"
     },
     {
@@ -543,10 +481,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -420,
-        800
+        64,
+        880
       ],
-      "id": "57a1ce49-4629-471a-ac94-d7262ab9dc3e",
+      "id": "a87a5370-6b06-4499-ba83-9baf469d4e08",
       "name": "Edit Fields4"
     },
     {
@@ -563,64 +501,27 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -880,
-        640
+        -400,
+        720
       ],
-      "id": "865dd3c7-800f-4e0c-9bd6-1b0af1b6e556",
+      "id": "f911fa5f-7c31-4fc0-b5bd-43c96c4bb78f",
       "name": "Schedule Trigger1"
     },
     {
       "parameters": {
         "resource": "file",
-        "fileId": "={{ $json.message.photo[0].file_id }}"
+        "fileId": "={{ $json.message.photo[0].file_id }}",
+        "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        -420,
-        100
+        64,
+        192
       ],
-      "id": "be589cee-a344-4f77-b824-7b210f3eba0a",
+      "id": "74414ce7-0727-4c08-90fd-b714b328d454",
       "name": "Telegram2",
-      "webhookId": "8b826288-7a45-4a12-bbf7-e07462532efb",
-      "credentials": {
-        "telegramApi": {
-          "id": "VVxY0WOtihPcmEn5",
-          "name": "Telegram account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "image",
-        "operation": "analyze",
-        "modelId": {
-          "__rl": true,
-          "value": "gpt-4o",
-          "mode": "list",
-          "cachedResultName": "GPT-4O"
-        },
-        "text": "=Analyse and Explain this image.",
-        "inputType": "base64",
-        "binaryPropertyName": "=data",
-        "options": {
-          "detail": "auto"
-        }
-      },
-      "type": "@n8n/n8n-nodes-langchain.openAi",
-      "typeVersion": 1.8,
-      "position": [
-        -80,
-        100
-      ],
-      "id": "47d69d12-959a-436b-8768-3c6590f18833",
-      "name": "OpenAI1",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
+      "webhookId": "8b826288-7a45-4a12-bbf7-e07462532efb"
     },
     {
       "parameters": {
@@ -629,10 +530,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -240,
-        100
+        256,
+        192
       ],
-      "id": "80cb1540-59df-4e8e-994f-ce0c8db55e80",
+      "id": "6812a5e2-a61f-47e8-ab91-c70791635490",
       "name": "Code"
     },
     {
@@ -652,26 +553,72 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        80,
-        100
+        576,
+        192
       ],
-      "id": "5f2487d8-0588-4565-8b88-f55c3d1d1ca7",
+      "id": "9cd81a77-2232-40ad-a9f2-3e6a6129f522",
       "name": "Edit Fields5"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        688,
+        832
+      ],
+      "id": "7eface42-af68-42b8-a728-906e0ddb08b6",
+      "name": "Google Gemini Chat Model"
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "operation": "analyze",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-pro",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-pro"
+        },
+        "text": "Analyse and Explain this image.",
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        416,
+        192
+      ],
+      "id": "49a904fd-68e1-4b6c-9155-fdb1631903d1",
+      "name": "Analyze image"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-pro",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-pro"
+        },
+        "inputType": "binary",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        304,
+        528
+      ],
+      "id": "e34e2d0f-aadf-4a72-ae24-e439299e7fdc",
+      "name": "Transcribe a recording"
     }
   ],
   "pinData": {},
   "connections": {
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Manager Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Window Buffer Memory": {
       "ai_memory": [
         [
@@ -698,20 +645,9 @@
       "main": [
         [
           {
-            "node": "OpenAI",
+            "node": "Transcribe a recording",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI": {
-      "main": [
-        [
-          {
-            "node": "Merge",
-            "type": "main",
-            "index": 3
           }
         ]
       ]
@@ -913,22 +849,11 @@
         ]
       ]
     },
-    "OpenAI1": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields5",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Code": {
       "main": [
         [
           {
-            "node": "OpenAI1",
+            "node": "Analyze image",
             "type": "main",
             "index": 0
           }
@@ -945,17 +870,49 @@
           }
         ]
       ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Manager Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze image": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
     }
   },
-  "active": true,
+  "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "da860c56-6954-44ec-a228-90a5d50fa049",
+  "versionId": "2a258935-576a-4b4d-a1be-0d8cc462bb74",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+    "instanceId": "498dd19097f281cd404ce965f402e87502d7baa728dab9dd09f3fe98a22d6ef2"
   },
-  "id": "I11nwRFREUHwRmLy",
+  "id": "MLIY7hBT67WkmnYU",
   "tags": []
 }

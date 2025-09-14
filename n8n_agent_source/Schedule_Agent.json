@@ -1,21 +1,6 @@
 {
-  "name": "Schedule Agent",
+  "name": "Schedule_Agent",
   "nodes": [
-    {
-      "parameters": {
-        "resume": "specificTime",
-        "dateTime": "={{ $json['event_time'] }}"
-      },
-      "type": "n8n-nodes-base.wait",
-      "typeVersion": 1.1,
-      "position": [
-        -40,
-        -160
-      ],
-      "id": "57ecd4b0-9465-4e6e-966e-63cb9cd9f446",
-      "name": "Wait1",
-      "webhookId": "1cd4796d-5394-4d9b-9769-d0dc8a75d294"
-    },
     {
       "parameters": {
         "mode": "raw",
@@ -25,10 +10,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -280,
-        -160
+        224,
+        0
       ],
-      "id": "efcfbcb2-f13e-48a9-93e6-fe962f5c1706",
+      "id": "c8026519-6b35-4807-a580-b453982423cc",
       "name": "Edit Fields1"
     },
     {
@@ -40,35 +25,11 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        200,
-        -160
+        704,
+        0
       ],
-      "id": "4f5bca25-33fb-4555-a120-356439fc02b3",
+      "id": "5b84cd61-2398-46f8-b206-9af6d15dec74",
       "name": "AI Agent1"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        20,
-        200
-      ],
-      "id": "ce2bf400-f557-4bf4-ba41-ce74398dc696",
-      "name": "OpenAI Chat Model1",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
     },
     {
       "parameters": {
@@ -77,10 +38,10 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -500,
-        -160
+        0,
+        0
       ],
-      "id": "a215bfe3-edb3-4d12-a3a4-f12b8f47af48",
+      "id": "e67568ed-4d85-40e7-8583-b09f691d33ca",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -104,43 +65,55 @@
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
       "position": [
-        420,
-        200
+        928,
+        368
       ],
-      "id": "0508c782-4598-4d2c-b082-d8920a30847d",
+      "id": "9792ae68-667d-4546-9eff-2f313ee41254",
       "name": "main agent"
+    },
+    {
+      "parameters": {
+        "resume": "specificTime",
+        "dateTime": "={{ $json['event_time'] }}"
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        464,
+        0
+      ],
+      "id": "fd07794e-f041-4c27-b907-926a20ee493b",
+      "name": "Wait",
+      "webhookId": "1cd4796d-5394-4d9b-9769-d0dc8a75d294"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        688,
+        368
+      ],
+      "id": "5150d57d-777f-4438-8486-7cc43f509a95",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "SpqoEmnmEa1Cy1lH",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
     }
   ],
   "pinData": {},
   "connections": {
-    "Wait1": {
-      "main": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Edit Fields1": {
       "main": [
         [
           {
-            "node": "Wait1",
+            "node": "Wait",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -167,17 +140,39 @@
           }
         ]
       ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "51bea540-7337-4727-89b0-451ab74d225b",
+  "versionId": "064d91f2-d017-4487-9cdb-96497b1cd52a",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+    "instanceId": "498dd19097f281cd404ce965f402e87502d7baa728dab9dd09f3fe98a22d6ef2"
   },
-  "id": "LhiJNg23tznrgHi6",
+  "id": "Fg1UXckKXpsYjejC",
   "tags": []
 }

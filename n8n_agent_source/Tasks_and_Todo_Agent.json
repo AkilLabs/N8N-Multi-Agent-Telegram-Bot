@@ -1,5 +1,5 @@
 {
-  "name": "Tasks and Todo Agent",
+  "name": "Tasks_and_Todo_Agent",
   "nodes": [
     {
       "parameters": {
@@ -8,10 +8,10 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -140,
-        440
+        -880,
+        48
       ],
-      "id": "dd92551b-9f0c-4954-b829-128bbe1800e2",
+      "id": "2d067ae8-16ae-452e-a356-52ec768ab147",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -25,36 +25,12 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        80,
-        440
+        -656,
+        48
       ],
-      "id": "8420894e-8b34-47c5-bf82-2c36af67e25b",
+      "id": "61c64b05-c84d-4559-bb62-508103936ffa",
       "name": "AI Agent",
       "onError": "continueErrorOutput"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        -160,
-        760
-      ],
-      "id": "5dda5c24-146d-4167-ad4f-3cab65c0f9a1",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
     },
     {
       "parameters": {
@@ -64,17 +40,11 @@
       "type": "n8n-nodes-base.todoistTool",
       "typeVersion": 2.1,
       "position": [
-        120,
-        740
+        -624,
+        352
       ],
-      "id": "247f4452-c4cb-4d1f-9100-1f5be7e166a6",
-      "name": "close task",
-      "credentials": {
-        "todoistApi": {
-          "id": "iJi8xe6FIvubg6Hb",
-          "name": "Todoist account 2"
-        }
-      }
+      "id": "e2582a3f-954c-4d89-a849-9211462e7fe7",
+      "name": "close task"
     },
     {
       "parameters": {
@@ -84,17 +54,11 @@
       "type": "n8n-nodes-base.todoistTool",
       "typeVersion": 2.1,
       "position": [
-        220,
-        660
+        -528,
+        272
       ],
-      "id": "40b0df88-191e-4b35-87ce-c4e141489c21",
-      "name": "delete task",
-      "credentials": {
-        "todoistApi": {
-          "id": "iJi8xe6FIvubg6Hb",
-          "name": "Todoist account 2"
-        }
-      }
+      "id": "c5a2860f-2ea4-46d0-8f4f-8d779b0b4c77",
+      "name": "delete task"
     },
     {
       "parameters": {
@@ -104,17 +68,11 @@
       "type": "n8n-nodes-base.todoistTool",
       "typeVersion": 2.1,
       "position": [
-        200,
-        900
+        -544,
+        512
       ],
-      "id": "fae7e7e9-1375-4001-9919-fc2f1dfcd3b0",
-      "name": "Get a single task",
-      "credentials": {
-        "todoistApi": {
-          "id": "iJi8xe6FIvubg6Hb",
-          "name": "Todoist account 2"
-        }
-      }
+      "id": "81a49dd6-cc3f-4c59-a606-18176dab2917",
+      "name": "Get a single task"
     },
     {
       "parameters": {
@@ -127,17 +85,11 @@
       "type": "n8n-nodes-base.todoistTool",
       "typeVersion": 2.1,
       "position": [
-        360,
-        860
+        -384,
+        464
       ],
-      "id": "6e88d98d-28cd-4db4-a622-c412f3995e58",
-      "name": "Get many tasks",
-      "credentials": {
-        "todoistApi": {
-          "id": "iJi8xe6FIvubg6Hb",
-          "name": "Todoist account 2"
-        }
-      }
+      "id": "accd36eb-3c88-4af7-bf8d-40723510b3b1",
+      "name": "Get many tasks"
     },
     {
       "parameters": {
@@ -153,17 +105,11 @@
       "type": "n8n-nodes-base.todoistTool",
       "typeVersion": 2.1,
       "position": [
-        540,
-        880
+        -208,
+        480
       ],
-      "id": "9bb8ef43-8efe-41b2-be4b-3993a391f762",
-      "name": "move a task",
-      "credentials": {
-        "todoistApi": {
-          "id": "iJi8xe6FIvubg6Hb",
-          "name": "Todoist account 2"
-        }
-      }
+      "id": "24a8b404-6da1-4e42-8cfa-397f04405dd6",
+      "name": "move a task"
     },
     {
       "parameters": {
@@ -173,17 +119,11 @@
       "type": "n8n-nodes-base.todoistTool",
       "typeVersion": 2.1,
       "position": [
-        720,
-        820
+        -16,
+        432
       ],
-      "id": "df9cfdfc-89f5-446e-becd-ccbf5998a15b",
-      "name": "reopen task",
-      "credentials": {
-        "todoistApi": {
-          "id": "iJi8xe6FIvubg6Hb",
-          "name": "Todoist account 2"
-        }
-      }
+      "id": "45426e5c-0f55-4110-82bb-aefa9f8040d4",
+      "name": "reopen task"
     },
     {
       "parameters": {
@@ -194,17 +134,11 @@
       "type": "n8n-nodes-base.todoistTool",
       "typeVersion": 2.1,
       "position": [
-        440,
-        680
+        -304,
+        288
       ],
-      "id": "763f746d-5642-454f-8cc9-eaae750f7b52",
-      "name": "update task",
-      "credentials": {
-        "todoistApi": {
-          "id": "iJi8xe6FIvubg6Hb",
-          "name": "Todoist account 2"
-        }
-      }
+      "id": "bbfb958e-dfc4-46d8-85b9-8c7c3b1a1919",
+      "name": "update task"
     },
     {
       "parameters": {
@@ -220,13 +154,13 @@
         },
         "options": {}
       },
-      "id": "4369f217-05ad-49e1-8f1f-8a73600cd97e",
+      "id": "887098a0-90e0-437b-b4f6-bf322990d7de",
       "name": "Try Again",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        900,
-        560
+        160,
+        160
       ]
     },
     {
@@ -243,13 +177,13 @@
         },
         "options": {}
       },
-      "id": "2cad0064-04a8-4309-bdb0-e3de824aef7e",
+      "id": "f4be8ba3-d0e3-4220-96cf-f487d1ff6ca8",
       "name": "Success",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        740,
-        400
+        0,
+        0
       ]
     },
     {
@@ -266,15 +200,28 @@
       "type": "n8n-nodes-base.todoistTool",
       "typeVersion": 2.1,
       "position": [
-        640,
-        660
+        -96,
+        272
       ],
-      "id": "319a0258-0d2d-45d0-9d6e-2e94ccdef72d",
-      "name": "create task",
+      "id": "bfeb1f82-786d-48a0-8e47-3f43fd5782b7",
+      "name": "create task"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -816,
+        336
+      ],
+      "id": "1b4c73c8-cbed-4b68-a985-5bd25d2691ba",
+      "name": "Google Gemini Chat Model",
       "credentials": {
-        "todoistApi": {
-          "id": "iJi8xe6FIvubg6Hb",
-          "name": "Todoist account 2"
+        "googlePalmApi": {
+          "id": "SpqoEmnmEa1Cy1lH",
+          "name": "Google Gemini(PaLM) Api account 2"
         }
       }
     }
@@ -305,17 +252,6 @@
           {
             "node": "Try Again",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -408,17 +344,27 @@
           }
         ]
       ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "77705910-330f-4740-a308-6961a8de4c5c",
+  "versionId": "6f75b05e-cfb4-41d8-891d-a68f72dde1e0",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+    "instanceId": "498dd19097f281cd404ce965f402e87502d7baa728dab9dd09f3fe98a22d6ef2"
   },
-  "id": "ng7D0V6aD7EqZFf5",
+  "id": "c8SfMxzCZekxRXiB",
   "tags": []
 }

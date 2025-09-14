@@ -1,5 +1,5 @@
 {
-  "name": "memory agent",
+  "name": "Memory_agent",
   "nodes": [
     {
       "parameters": {
@@ -8,10 +8,10 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        640,
-        -100
+        480,
+        -112
       ],
-      "id": "76845d9f-9241-4917-87a2-be1d7a89ae8b",
+      "id": "ffe35309-05c3-4725-8304-a49d75eed28c",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -25,36 +25,11 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        860,
-        -100
+        704,
+        -112
       ],
-      "id": "3c47bfb7-a936-474b-8864-994f420ccbd1",
+      "id": "49ff9b27-e63f-4ed7-8fa4-6d7a3913aa96",
       "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "value": "gpt-4o",
-          "mode": "list",
-          "cachedResultName": "gpt-4o"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        480,
-        360
-      ],
-      "id": "6ac9f0f2-82ea-4678-b3cf-ae715c1d82c1",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
     },
     {
       "parameters": {
@@ -66,17 +41,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        960,
-        140
+        800,
+        128
       ],
-      "id": "d09ab960-0114-40e9-90de-2fd0fd29d7dc",
-      "name": "get many records",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "6470af07-aa22-4d73-b629-f58e9f57dfbc",
+      "name": "get many records"
     },
     {
       "parameters": {
@@ -122,17 +91,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        660,
+        512,
         320
       ],
-      "id": "845ba1a3-0ae9-4191-8ef0-c31eed0872a5",
-      "name": "Create a record - personal",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "b6214a8d-a99a-4046-ba8b-934fd440b7f1",
+      "name": "Create a record - personal"
     },
     {
       "parameters": {
@@ -157,17 +120,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        860,
+        704,
         320
       ],
-      "id": "d63f0926-ee80-4b3d-af68-4478d312a41f",
-      "name": "Search - personal",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "17008f31-3879-462d-b125-185ab501261a",
+      "name": "Search - personal"
     },
     {
       "parameters": {
@@ -223,17 +180,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        640,
-        140
+        480,
+        128
       ],
-      "id": "554fa764-7047-4613-bc4e-7b521d42d410",
-      "name": "Create or Update Existing - personal",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "e01095ac-6658-4d48-98f9-0a755cce8c4a",
+      "name": "Create or Update Existing - personal"
     },
     {
       "parameters": {
@@ -257,17 +208,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        1140,
-        140
+        992,
+        128
       ],
-      "id": "93115a53-d97e-4742-a1bd-07bc025e855e",
-      "name": "delete record - personal",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "f3c7ee24-54c7-43a1-bef9-292f10459f34",
+      "name": "delete record - personal"
     },
     {
       "parameters": {
@@ -291,17 +236,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        800,
-        140
+        640,
+        128
       ],
-      "id": "9db18198-d456-4555-89d2-0aacb563fde7",
-      "name": "get record - personal",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "39c3612f-ca72-41a5-9203-c81425881931",
+      "name": "get record - personal"
     },
     {
       "parameters": {
@@ -357,17 +296,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        1040,
+        880,
         320
       ],
-      "id": "aee695db-64e6-40d2-a65d-eb28c960097d",
-      "name": "Update record - personal",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "0c639c55-111b-4a28-9295-fb70f76ce31d",
+      "name": "Update record - personal"
     },
     {
       "parameters": {
@@ -377,10 +310,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        340,
+        192,
         320
       ],
-      "id": "dbbf642d-c338-4d55-9457-f15a960a7379",
+      "id": "1a035b03-0f4c-4408-8984-56ac5265d216",
       "name": "Window Buffer Memory"
     },
     {
@@ -406,17 +339,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        1220,
-        340
+        1072,
+        336
       ],
-      "id": "d9238aec-f774-4bf7-a624-375f9b796d88",
-      "name": "Search notifications",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "67405477-8046-4b5b-81a1-6ed7a6fe8b13",
+      "name": "Search notifications"
     },
     {
       "parameters": {
@@ -440,17 +367,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        1320,
-        180
+        1168,
+        176
       ],
-      "id": "9cbd213e-c117-484d-9728-4cc9e0b68e6e",
-      "name": "get record - notifications",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "4d56d035-9a27-4ab0-b72e-26136fb8a9ec",
+      "name": "get record - notifications"
     },
     {
       "parameters": {
@@ -474,17 +395,11 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        1420,
-        340
+        1264,
+        336
       ],
-      "id": "82285f3c-b51c-417a-8981-1d4fb7cab4c7",
-      "name": "get record - contacts",
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
-        }
-      }
+      "id": "ae023000-551f-4d7b-8f79-b0d6a1374f72",
+      "name": "get record - contacts"
     },
     {
       "parameters": {
@@ -509,15 +424,28 @@
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
       "position": [
-        1600,
-        340
+        1440,
+        336
       ],
-      "id": "60e31fa4-1f3d-4f10-abad-70fd39800916",
-      "name": "Search contacts",
+      "id": "91388ebb-d210-4ee0-a8ee-7b937109eb77",
+      "name": "Search contacts"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        352,
+        320
+      ],
+      "id": "0a482d4f-b865-48c4-bbe4-e0e280a18e57",
+      "name": "Google Gemini Chat Model",
       "credentials": {
-        "airtableTokenApi": {
-          "id": "0mhxduPjNCa17zWU",
-          "name": "Airtable Personal Access Token account"
+        "googlePalmApi": {
+          "id": "SpqoEmnmEa1Cy1lH",
+          "name": "Google Gemini(PaLM) Api account 2"
         }
       }
     }
@@ -530,17 +458,6 @@
           {
             "node": "AI Agent",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -677,16 +594,27 @@
           }
         ]
       ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "290e3d08-51e3-4e1c-9f38-7fc4d6030100",
+  "versionId": "a3ed77cc-3908-44d9-bf7d-af0b39b55e3e",
   "meta": {
-    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+    "instanceId": "498dd19097f281cd404ce965f402e87502d7baa728dab9dd09f3fe98a22d6ef2"
   },
-  "id": "pVefSuWmOKcpQgUa",
+  "id": "kqG5ifYX1ZWZpEqT",
   "tags": []
 }

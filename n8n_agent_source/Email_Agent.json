@@ -1,5 +1,5 @@
 {
-  "name": "Email Agent",
+  "name": "Email_Agent",
   "nodes": [
     {
       "parameters": {
@@ -15,13 +15,13 @@
         },
         "options": {}
       },
-      "id": "4bd68bea-e60f-45b9-88a9-ad48cd8d94e7",
+      "id": "e27672df-8dfe-4061-9aa8-707b451a9c5b",
       "name": "Try Again",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        100,
-        300
+        192,
+        80
       ]
     },
     {
@@ -38,13 +38,13 @@
         },
         "options": {}
       },
-      "id": "c1cd30f8-75ab-4be5-ba1b-a9e197a9869d",
+      "id": "36f43445-e216-472d-907b-de6428185770",
       "name": "Success",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -80,
-        220
+        0,
+        0
       ]
     },
     {
@@ -55,13 +55,13 @@
           "systemMessage": "=You are an email management assistant responsible for composing and formatting professional emails in HTML. Every email must be signed off as follows, with a line break between \"Best,\" and \"Jeni, Salman's Assistant\":\n\nBest,\nJeni, Salman's Assistant\n\nEmail Management Rules\nGet the appropriate email ID from contacts before sending the mail\nSending Emails: Call this tool to immediately send the email without asking for confirmation.\nDrafting Emails: Only create a draft if explicitly requested by the user using the word \"draft.\" Otherwise, always send the email.\nRetrieving Emails: Use \"Get Emails\" when the user asks for their emails.\nManaging Labels:\nUse \"Get Labels\" to retrieve available labels.\nUse \"Label Email\" to assign labels to an email.\nMarking as Unread:\nUse \"Get Emails\" to obtain the message ID.\nThen, use \"Mark Unread\" to mark an email as unread.\nReplying to Emails:\nUse \"Get Emails\" to retrieve the email thread.\nThen, use \"Email Reply\" to send the response.\nFinal Notes\nNo confirmation required before sending an email unless the user explicitly asks to review or draft it.\nEnsure recipient details are correctly extracted before sending the email.\nAlways send the text in body instead of HTML. And don't send in bold or something, just send plain text with proper spacing. \nGet Recipient Details from query\nCurrent Date/Time: {{ $now }}\n\n"
         }
       },
-      "id": "a454f6ab-224f-4a74-b02b-1e54abd0b803",
+      "id": "99e093e9-0c5c-4ae5-9882-cd48a64594fc",
       "name": "Email Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.6,
       "position": [
-        -580,
-        260
+        -496,
+        48
       ],
       "onError": "continueErrorOutput"
     },
@@ -78,18 +78,12 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -480,
-        620
+        -400,
+        400
       ],
-      "id": "1706fb82-99a1-465a-9c23-b1686d0c0bbf",
+      "id": "6878e7db-a3a1-47cf-b164-6f99f470e89b",
       "name": "Send Email",
-      "webhookId": "6ece5bed-e23d-4d08-814c-ba2def26a187",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iR2dc4wPysDAVG16",
-          "name": "Gmail account"
-        }
-      }
+      "webhookId": "6ece5bed-e23d-4d08-814c-ba2def26a187"
     },
     {
       "parameters": {
@@ -104,18 +98,12 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -220,
-        480
+        -144,
+        272
       ],
-      "id": "0ed8bd55-5b10-4811-93a6-6bba4e3d4473",
+      "id": "1a6fe4bf-3de2-4e04-ad74-8d7ff63074c7",
       "name": "Create Draft",
-      "webhookId": "b522d183-98c9-4973-8e26-99da5e707ed7",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iR2dc4wPysDAVG16",
-          "name": "Gmail account"
-        }
-      }
+      "webhookId": "b522d183-98c9-4973-8e26-99da5e707ed7"
     },
     {
       "parameters": {
@@ -129,18 +117,12 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -340,
-        620
+        -256,
+        400
       ],
-      "id": "2c9b2a4f-6c07-4368-b01a-9865521dd292",
+      "id": "6f25bfe5-3df5-4835-ad13-e698be616811",
       "name": "Email Reply",
-      "webhookId": "1f32e701-c5d1-4636-a2f3-ee8becd8b88b",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iR2dc4wPysDAVG16",
-          "name": "Gmail account"
-        }
-      }
+      "webhookId": "1f32e701-c5d1-4636-a2f3-ee8becd8b88b"
     },
     {
       "parameters": {
@@ -150,18 +132,12 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        160,
-        620
+        240,
+        400
       ],
-      "id": "c384318d-e0ae-4635-99f4-4bce48beca6a",
+      "id": "47873515-8793-4dfb-8d6d-c94dd9cf9ffb",
       "name": "Get Labels",
-      "webhookId": "1e128c8b-9f31-4ed3-89f2-8c0238194067",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iR2dc4wPysDAVG16",
-          "name": "Gmail account"
-        }
-      }
+      "webhookId": "1e128c8b-9f31-4ed3-89f2-8c0238194067"
     },
     {
       "parameters": {
@@ -172,18 +148,12 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -180,
-        660
+        -96,
+        448
       ],
-      "id": "8870e2b0-fde2-4f6e-8f70-56c9f9409d0f",
+      "id": "94efca0b-5d4e-48f6-9596-6f42ff7a2b0f",
       "name": "Label Emails",
-      "webhookId": "e7238840-c3b5-4116-b5ae-c8bb677fecf7",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iR2dc4wPysDAVG16",
-          "name": "Gmail account"
-        }
-      }
+      "webhookId": "e7238840-c3b5-4116-b5ae-c8bb677fecf7"
     },
     {
       "parameters": {
@@ -193,18 +163,12 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        -20,
-        640
+        64,
+        432
       ],
-      "id": "10ab4456-c19f-461e-9d1e-865aa2e5a12c",
+      "id": "e98865f9-496a-4228-913b-1f85c9cffc4e",
       "name": "Mark Unread",
-      "webhookId": "69904b8b-8728-4dd4-ac79-0fe57a3f85a8",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iR2dc4wPysDAVG16",
-          "name": "Gmail account"
-        }
-      }
+      "webhookId": "69904b8b-8728-4dd4-ac79-0fe57a3f85a8"
     },
     {
       "parameters": {
@@ -213,35 +177,11 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -820,
-        260
+        -736,
+        48
       ],
-      "id": "17a9fd86-9197-4cda-a1b8-cdbc5b52f5c1",
+      "id": "c77e452e-8840-42b0-9ce3-4c415f19a7aa",
       "name": "When Executed by Another Workflow"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        -860,
-        580
-      ],
-      "id": "28a67518-899b-4239-9528-bf21bd4f321a",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
     },
     {
       "parameters": {
@@ -254,18 +194,12 @@
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
       "position": [
-        60,
-        520
+        144,
+        304
       ],
-      "id": "c27dcac4-1013-47b2-b706-81dba0bb68ae",
+      "id": "c21ca991-202e-4768-9cad-93b6a1e2debb",
       "name": "Gmail",
-      "webhookId": "23761dab-5be2-4ace-84d1-3518594ac00f",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "iR2dc4wPysDAVG16",
-          "name": "Gmail account"
-        }
-      }
+      "webhookId": "23761dab-5be2-4ace-84d1-3518594ac00f"
     },
     {
       "parameters": {
@@ -275,10 +209,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
       "position": [
-        -660,
-        540
+        -576,
+        320
       ],
-      "id": "e9318296-f1ad-41d0-b8e1-4510e8388e72",
+      "id": "e49fb29d-bda2-458d-a95c-763eb2873ee3",
       "name": "Window Buffer Memory"
     },
     {
@@ -302,15 +236,28 @@
       "type": "n8n-nodes-base.googleSheetsTool",
       "typeVersion": 4.5,
       "position": [
-        -440,
-        760
+        -368,
+        544
       ],
-      "id": "40fccc99-56e6-48fb-b675-4bd9778a0857",
-      "name": "Google Sheets",
+      "id": "94cf91a1-411b-4850-83d3-62ebb36b719b",
+      "name": "Google Sheets"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -752,
+        320
+      ],
+      "id": "f6e9e909-19af-43f6-b357-2f019d964126",
+      "name": "Google Gemini Chat Model",
       "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "e2v3MlUK6X59ZyIZ",
-          "name": "Google Sheets account 2"
+        "googlePalmApi": {
+          "id": "SpqoEmnmEa1Cy1lH",
+          "name": "Google Gemini(PaLM) Api account 2"
         }
       }
     }
@@ -412,17 +359,6 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Email Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Gmail": {
       "ai_tool": [
         [
@@ -455,17 +391,27 @@
           }
         ]
       ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Email Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "187d6b91-2cfb-4164-9dc4-564604c98c41",
+  "versionId": "730cf199-0542-4fa4-b1dd-27e97cd81da4",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+    "instanceId": "498dd19097f281cd404ce965f402e87502d7baa728dab9dd09f3fe98a22d6ef2"
   },
-  "id": "yNVB3LCMYRDdOWVY",
+  "id": "iTFucYjgYClOciJt",
   "tags": []
 }

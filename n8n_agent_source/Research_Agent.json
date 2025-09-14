@@ -1,5 +1,5 @@
 {
-  "name": "Research Agent",
+  "name": "Research_Agent",
   "nodes": [
     {
       "parameters": {
@@ -8,10 +8,10 @@
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
       "position": [
-        -60,
-        140
+        0,
+        0
       ],
-      "id": "58cedbab-22bc-4694-b2dc-a590b452cd2e",
+      "id": "cbf65804-18e3-4b25-b050-c25049cb0e27",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -25,35 +25,11 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        300,
-        160
+        368,
+        32
       ],
-      "id": "3d8877a4-d82d-4d45-8b9b-4f3a30f5b41a",
+      "id": "666a374e-5dd3-4d85-94c3-fd86c5949ca0",
       "name": "AI Agent"
-    },
-    {
-      "parameters": {
-        "model": {
-          "__rl": true,
-          "mode": "list",
-          "value": "gpt-4o-mini"
-        },
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "typeVersion": 1.2,
-      "position": [
-        160,
-        440
-      ],
-      "id": "11821c7e-079b-43cc-8c63-b978eda5063d",
-      "name": "OpenAI Chat Model",
-      "credentials": {
-        "openAiApi": {
-          "id": "UhE57FbNZS6UBi1o",
-          "name": "Demo Acc"
-        }
-      }
     },
     {
       "parameters": {
@@ -62,27 +38,21 @@
       "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
       "typeVersion": 1,
       "position": [
-        320,
-        400
+        384,
+        272
       ],
-      "id": "bc0d503e-fb3d-4851-807a-fa7034e2b0df",
-      "name": "SerpAPI",
-      "credentials": {
-        "serpApi": {
-          "id": "lwsy2eK9LwExYmVL",
-          "name": "SerpAPI account"
-        }
-      }
+      "id": "91360f9d-3caa-47f0-8dc8-4c7204902489",
+      "name": "SerpAPI"
     },
     {
       "parameters": {},
       "type": "@n8n/n8n-nodes-langchain.toolWikipedia",
       "typeVersion": 1,
       "position": [
-        440,
-        480
+        512,
+        352
       ],
-      "id": "492f9653-a0f3-463a-aac9-eaf4dd0aebf1",
+      "id": "722569ad-1797-4bfc-ad09-31d16faa64cf",
       "name": "Wikipedia"
     },
     {
@@ -90,15 +60,28 @@
       "type": "@n8n/n8n-nodes-langchain.toolWolframAlpha",
       "typeVersion": 1,
       "position": [
-        580,
-        400
+        640,
+        272
       ],
-      "id": "1a9d0488-f353-4f26-b2bb-d90519411153",
-      "name": "Wolfram Alpha",
+      "id": "b54be551-69a2-44a9-bcf1-63acb66465f0",
+      "name": "Wolfram Alpha"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        224,
+        288
+      ],
+      "id": "5ae81e04-cd6e-4b7e-b375-0437fe2c4402",
+      "name": "Google Gemini Chat Model",
       "credentials": {
-        "wolframAlphaApi": {
-          "id": "0ctqxt213NFXhm9H",
-          "name": "WolframAlphaApi account 2"
+        "googlePalmApi": {
+          "id": "SpqoEmnmEa1Cy1lH",
+          "name": "Google Gemini(PaLM) Api account 2"
         }
       }
     }
@@ -111,17 +94,6 @@
           {
             "node": "AI Agent",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -159,17 +131,27 @@
           }
         ]
       ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "db894fb3-ce83-4a3b-bb71-5c1650508432",
+  "versionId": "6a14d769-ca0e-4d6a-845f-cdbe0ae87145",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "d36c585096f6ecd97f1d77b5794626bbbd65e4980eb68a36843774e99fddfe1e"
+    "instanceId": "498dd19097f281cd404ce965f402e87502d7baa728dab9dd09f3fe98a22d6ef2"
   },
-  "id": "1pTm8U4KC6pIXTyy",
+  "id": "R9Et7HrcI9xptsQG",
   "tags": []
 }
