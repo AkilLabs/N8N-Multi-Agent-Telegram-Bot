@@ -12,9 +12,9 @@ Each sub-agent (such as `Memory_agent.json`, `Project_management.json`, `Tasks_a
 
 #### Example: `Memory_agent.json` as a Sub-Workflow
 
-- The `Memory_agent.json` workflow contains its own AI Agent node, OpenAI node, and Airtable nodes for memory storage and retrieval.
+- The `Memory_agent.json` workflow contains its own AI Agent node, Gemini node, and Airtable nodes for memory storage and retrieval.
 - It is triggered by the `executeWorkflowTrigger` node when called as a tool from the Main Agent.
-- All required credentials (e.g., OpenAI API, Airtable API) must be configured in N8N and assigned to the relevant nodes in the sub-agent workflow.
+- All required credentials (e.g., Gemini API, Airtable API) must be configured in N8N and assigned to the relevant nodes in the sub-agent workflow.
 
 #### How to Add Sub-Agents as Tools in the Main Agent
 
@@ -25,7 +25,7 @@ Each sub-agent (such as `Memory_agent.json`, `Project_management.json`, `Tasks_a
    - Set the `workflowId` to the corresponding sub-agent workflow (e.g., `Memory_agent.json`).
    - Provide a clear `name` and `description` for each tool.
 4. **Connect the tool nodes** to the AI Agent node as shown in the sample `Main_agent.json`.
-5. **Configure required credentials** for each agent (OpenAI, Airtable, Google, etc.) in the N8N credentials manager. Assign them to the relevant nodes in each sub-agent workflow.
+5. **Configure required credentials** for each agent (Gemini, Airtable, SerpAPI, etc.) in the N8N credentials manager. Assign them to the relevant nodes in each sub-agent workflow.
 
 See the `Main_agent.json` and sub-agent files (e.g., `Memory_agent.json`) for working examples of this hierarchical structure.
 
@@ -105,7 +105,7 @@ This multi-agent system creates "Jeni" - an AI assistant that manages your digit
 To fully utilize this system, you'll need to set up these services:
 
 ### Essential APIs
-- **OpenAI API**: GPT-4 models for AI processing
+- **Gemini API**: Gemini models for AI processing
 - **Telegram Bot Token**: Create via [@BotFather](https://t.me/botfather)
 - **Google Calendar API**: Calendar management
 - **Gmail API**: Email operations
