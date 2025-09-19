@@ -1,6 +1,13 @@
 # N8N Multi-Agent Telegram Bot
 
+[![N8N Multi-Agent Workflow](Assets/overall_workflow.png)](https://github.com/AkilLabs/N8N-Multi-Agent-Telegram-Bot)
+
 An intelligent multi-agent system built with N8N that provides a comprehensive personal assistant through Telegram. The bot manages calendar, tasks, emails, research, memory, and project management through specialized AI agents.
+
+## 🔗 Official N8N Template
+**N8N Workflow Template**: [https://n8n.io/workflows/8582-personal-assistant-bot-with-multi-agent-system-using-telegram-and-google-gemini/](https://n8n.io/workflows/8582-personal-assistant-bot-with-multi-agent-system-using-telegram-and-google-gemini/)
+
+Get the official N8N workflow template to quickly deploy this multi-agent system in your N8N instance.
 
 ## 🏗️ Architecture Overview
 
